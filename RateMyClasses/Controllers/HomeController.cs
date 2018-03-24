@@ -43,5 +43,6 @@ The Rate My Classes System is a crowd-sourced course rating and review System fo
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
     }
 }

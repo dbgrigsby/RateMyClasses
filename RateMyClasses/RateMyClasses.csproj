@@ -23,6 +23,7 @@
     <Content Remove="Views\Student\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
+        <Folder Include="Views\Search\" />
     <Folder Include="Migrations\" />
     <Folder Include="Views\Student\" />
     <Folder Include="Data\" />
