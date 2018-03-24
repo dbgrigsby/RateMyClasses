@@ -27,7 +27,7 @@ The Rate My Classes System is a crowd-sourced course rating and review System fo
  or not they recommend taking the class and other classes that helped prepare them for
  this class. All this information will be available upon searching for a class by either its
  name or the abbreviated department name and class number. Users can scroll through
- the list of classes and get rst hand review and suggestions from Contributors that have
+ the list of classes and get first hand review and suggestions from Contributors that have
  already taken classes at Case Western Reserve University. ";
 			return View();
         }
