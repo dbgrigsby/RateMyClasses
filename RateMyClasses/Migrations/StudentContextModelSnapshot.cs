@@ -24,9 +24,9 @@ namespace RateMyClasses.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Genre");
+                    b.Property<int>("Age");
 
-                    b.Property<decimal>("Price");
+                    b.Property<string>("Genre");
 
                     b.Property<DateTime>("ReleaseDate");
 

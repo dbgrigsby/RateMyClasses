@@ -11,7 +11,7 @@ using System;
 namespace RateMyClasses.Migrations
 {
     [DbContext(typeof(StudentContext))]
-    [Migration("20180324191819_InitialCreate")]
+    [Migration("20180324194800_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,9 +25,9 @@ namespace RateMyClasses.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Genre");
+                    b.Property<int>("Age");
 
-                    b.Property<decimal>("Price");
+                    b.Property<string>("Genre");
 
                     b.Property<DateTime>("ReleaseDate");
 

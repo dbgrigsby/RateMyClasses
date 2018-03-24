@@ -7,7 +7,7 @@ namespace RateMyClasses.Models
         public string Title { get; set; }
         public DateTime ReleaseDate { get; set; }
         public string Genre { get; set; }
-        public decimal Price { get; set; }
+        public int Age { get; set; }
         public Student()
         {
         }
