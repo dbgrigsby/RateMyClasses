@@ -3,11 +3,12 @@ namespace RateMyClasses.Models
 {
     public class Student
     {
-        public int ID { get; set; }
-        public string Title { get; set; }
-        public DateTime ReleaseDate { get; set; }
-        public string Genre { get; set; }
-        public int Age { get; set; }
+        public Int64 id { get; set; }
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public string studentStatus { get; set; }
+        public string userName { get; set; }
+        public bool isModerator { get; set; }
         public Student()
         {
         }

@@ -1,4 +1,4 @@
-@model IEnumerable<RateMyClasses.Models.Student>
+@model IEnumerable<RateMyClasses.Models.Course>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,19 +13,16 @@
     <thead>
         <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.firstName)
+                    @Html.DisplayNameFor(model => model.name)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.lastName)
+                    @Html.DisplayNameFor(model => model.description)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.studentStatus)
+                    @Html.DisplayNameFor(model => model.courseEvalLink)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.userName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.isModerator)
+                    @Html.DisplayNameFor(model => model.department)
                 </th>
             <th></th>
         </tr>
@@ -34,19 +31,16 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.firstName)
+                @Html.DisplayFor(modelItem => item.name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.lastName)
+                @Html.DisplayFor(modelItem => item.description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.studentStatus)
+                @Html.DisplayFor(modelItem => item.courseEvalLink)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.userName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.isModerator)
+                @Html.DisplayFor(modelItem => item.department)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |

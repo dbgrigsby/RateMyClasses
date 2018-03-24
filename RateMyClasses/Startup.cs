@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -26,6 +26,8 @@ namespace RateMyClasses
             services.AddMvc();
             services.AddDbContext<StudentContext>(options =>
                 options.UseSqlite("Data Source=RateMyClasses.db"));
+            services.AddDbContext<CourseContext>(options =>
+              options.UseSqlite("Data Source=RateMyClasses.db"));
         }
 
 

@@ -19,8 +19,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Views\SearchToolBarView.cshtml" />
+    <Content Remove="Views\Student\Create.cshtml" />
+    <Content Remove="Views\Student\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Migrations\" />
+    <Folder Include="Views\Student\" />
+    <Folder Include="Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Migrations\20180324194800_InitialCreate.cs" />
+    <Compile Remove="Migrations\20180324194800_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\StudentContextModelSnapshot.cs" />
+    <Compile Remove="Data\CourseContext.cs" />
   </ItemGroup>
 </Project>
