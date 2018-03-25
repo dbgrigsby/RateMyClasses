@@ -27,6 +27,7 @@
     <Folder Include="Migrations\" />
     <Folder Include="Views\Student\" />
     <Folder Include="Data\" />
+    <Folder Include="Views\Review\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Migrations\20180324194800_InitialCreate.cs" />

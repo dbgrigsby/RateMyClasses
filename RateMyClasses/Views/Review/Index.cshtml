@@ -1,0 +1,17 @@
+﻿@model IEnumerable<RateMyClasses.Models.Student>
+
+<h1>@ViewData["Title"]</h1>
+<h2>@ViewData["Message"]</h2>
+
+<table>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td width="75px;" align="left">@item.firstName</td>
+            <td width="75px;" align="left">@item.lastName</td>
+            <td width="75px;" align="left">@item.studentStatus</td>
+            <td width="75px;" align="left">@item.userName</td>
+            <td width="75px;" align="left">@item.isModerator</td>  
+        </tr>
+    }
+</table>

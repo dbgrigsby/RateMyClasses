@@ -36,6 +36,9 @@
             <td width="75px;" align="left">@item.description</td>
             <td width="75px;" align="left">@item.courseEvalLink</td>
             <td width="75px;" align="left">@item.department</td>
+            <td width="75px;">
+                <a asp-controller="Review" asp-action="Index" asp-route-id="@item.id">Reviews</a> |
+           </td>
         </tr>
     }
 </table>
