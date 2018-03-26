@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <None Remove="Views\LoginView.cshtml.ascx" />
+    <None Remove="Views\Search\DepartmentSearch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Views\SearchToolBarView.cshtml" />
