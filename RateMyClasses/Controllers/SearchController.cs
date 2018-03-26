@@ -25,7 +25,9 @@ namespace RateMyClasses.Controllers {
 			_context = context;
 		}
 
-		public ActionResult Index(string searchString = "") {
+		public ActionResult Index(string nameString = "",
+								  string departmentString = "",
+								  string descriptionString = "") {
 			ViewData["Title"] = "Search";
 			ViewData["Message"] = "Enter in a course to search";
 
@@ -34,18 +36,28 @@ namespace RateMyClasses.Controllers {
 
 			var noCourses = allCourses.Where(i => i.id == 0);
 
-			if (String.IsNullOrEmpty(searchString)) {
-				return View(noCourses);
-			}
-
-			else {
-				var selectedCourses = allCourses.Where(c => c.name.ToLower().Contains(searchString.ToLower()));
+			// search by name
+			if (!String.IsNullOrEmpty(nameString)) {
+				var selectedCourses = allCourses.Where(c => c.name.ToLower().Contains(nameString.ToLower()));
 				return View(selectedCourses);
 			}
-		}
 
-		public IActionResult Error() {
-			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+			// search by department
+			else if (!String.IsNullOrEmpty(departmentString)) {
+				var selectedCourses = allCourses.Where(c => c.department.ToLower().Contains(departmentString.ToLower()));
+				return View(selectedCourses);
+			}
+
+			// search by description
+			else if (!String.IsNullOrEmpty(descriptionString)) {
+				var selectedCourses = allCourses.Where(c => c.description.ToLower().Contains(descriptionString.ToLower()));
+				return View(selectedCourses);
+			}
+
+			// default, no table listed
+			else {
+				return View(noCourses);
+			}
 		}
 
 	}
