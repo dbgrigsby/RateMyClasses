@@ -1,17 +1,65 @@
-﻿@model IEnumerable<RateMyClasses.Models.Student>
+@model IEnumerable<RateMyClasses.Models.Review>
 
-<h1>@ViewData["Title"]</h1>
-<h2>@ViewData["Message"]</h2>
+@{
+    ViewData["Title"] = "Index";
+}
 
-<table>
-    @foreach (var item in Model)
-    {
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
         <tr>
-            <td width="75px;" align="left">@item.firstName</td>
-            <td width="75px;" align="left">@item.lastName</td>
-            <td width="75px;" align="left">@item.studentStatus</td>
-            <td width="75px;" align="left">@item.userName</td>
-            <td width="75px;" align="left">@item.isModerator</td>  
+                <th>
+                    @Html.DisplayNameFor(model => model.courseId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.professorName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.dateCreated)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.isHidden)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.score)
+                </th>
+            <th></th>
         </tr>
-    }
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.courseId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.professorName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dateCreated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isHidden)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.score)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
 </table>

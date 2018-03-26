@@ -4,14 +4,14 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
-using RateMyClasses.Models;
+using Microsoft.EntityFrameworkCore.Storage.Internal;
 using System;
 
 namespace RateMyClasses.Migrations
 {
-    [DbContext(typeof(StudentContext))]
-    [Migration("20180324202235_InitialCreate")]
-    partial class InitialCreate
+    [DbContext(typeof(ReviewContext))]
+    [Migration("20180326181010_ResetDB")]
+    partial class ResetDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -19,24 +19,26 @@ namespace RateMyClasses.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.0.0-rtm-26452");
 
-            modelBuilder.Entity("RateMyClasses.Models.Student", b =>
+            modelBuilder.Entity("RateMyClasses.Models.Review", b =>
                 {
                     b.Property<long>("id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("firstName");
+                    b.Property<long>("courseId");
 
-                    b.Property<bool>("isModerator");
+                    b.Property<DateTime>("dateCreated");
 
-                    b.Property<string>("lastName");
+                    b.Property<string>("description");
 
-                    b.Property<string>("studentStatus");
+                    b.Property<bool>("isHidden");
 
-                    b.Property<string>("userName");
+                    b.Property<string>("professorName");
+
+                    b.Property<int>("score");
 
                     b.HasKey("id");
 
-                    b.ToTable("Student");
+                    b.ToTable("Review");
                 });
 #pragma warning restore 612, 618
         }

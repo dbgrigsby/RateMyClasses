@@ -4,37 +4,40 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
-using RateMyClasses.Models;
+using Microsoft.EntityFrameworkCore.Storage.Internal;
 using System;
 
-namespace RateMyClasses.Migrations.Course
+namespace RateMyClasses.Migrations
 {
-    [DbContext(typeof(CourseContext))]
-    [Migration("20180324202251_InitialCreate")]
-    partial class InitialCreate
+    [DbContext(typeof(ReviewContext))]
+    partial class ReviewContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.0.0-rtm-26452");
 
-            modelBuilder.Entity("RateMyClasses.Models.Course", b =>
+            modelBuilder.Entity("RateMyClasses.Models.Review", b =>
                 {
                     b.Property<long>("id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("courseEvalLink");
+                    b.Property<long>("courseId");
 
-                    b.Property<string>("department");
+                    b.Property<DateTime>("dateCreated");
 
                     b.Property<string>("description");
 
-                    b.Property<string>("name");
+                    b.Property<bool>("isHidden");
+
+                    b.Property<string>("professorName");
+
+                    b.Property<int>("score");
 
                     b.HasKey("id");
 
-                    b.ToTable("Course");
+                    b.ToTable("Review");
                 });
 #pragma warning restore 612, 618
         }

@@ -16,23 +16,37 @@
 
   <ItemGroup>
     <None Remove="Views\LoginView.cshtml.ascx" />
+    <None Remove="Views\Review\Create.cshtml" />
+    <None Remove="Views\Review\Edit.cshtml" />
+    <None Remove="Views\Review\Details.cshtml" />
+    <None Remove="Views\Review\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Views\SearchToolBarView.cshtml" />
     <Content Remove="Views\Student\Create.cshtml" />
     <Content Remove="Views\Student\Delete.cshtml" />
+    <Content Remove="Views\Course\Create.cshtml" />
+    <Content Remove="Views\Course\Delete.cshtml" />
+    <Content Remove="Views\Course\Details.cshtml" />
+    <Content Remove="Views\Course\Edit.cshtml" />
+    <Content Remove="Views\Review\Index.cshtml" />
+    <Content Remove="Views\Student\Details.cshtml" />
+    <Content Remove="Views\Student\Edit.cshtml" />
+    <Content Remove="Views\Student\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
         <Folder Include="Views\Search\" />
     <Folder Include="Migrations\" />
-    <Folder Include="Views\Student\" />
     <Folder Include="Data\" />
-    <Folder Include="Views\Review\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Migrations\20180324194800_InitialCreate.cs" />
     <Compile Remove="Migrations\20180324194800_InitialCreate.Designer.cs" />
     <Compile Remove="Migrations\StudentContextModelSnapshot.cs" />
     <Compile Remove="Data\CourseContext.cs" />
+    <Compile Remove="Migrations\Course\20180324202251_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\Course\20180324202251_InitialCreate.cs" />
+    <Compile Remove="Migrations\Course\CourseContextModelSnapshot.cs" />
+    <Compile Remove="Migrations\Review\20180326174559_Add Review Model.cs" />
   </ItemGroup>
 </Project>

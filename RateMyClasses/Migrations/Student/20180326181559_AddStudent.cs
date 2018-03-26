@@ -2,9 +2,9 @@
 using System;
 using System.Collections.Generic;
 
-namespace RateMyClasses.Migrations
+namespace RateMyClasses.Migrations.Student
 {
-    public partial class InitialCreate : Migration
+    public partial class AddStudent : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

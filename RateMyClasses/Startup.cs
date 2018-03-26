@@ -28,6 +28,8 @@ namespace RateMyClasses
                 options.UseSqlite("Data Source=RateMyClasses.db"));
             services.AddDbContext<CourseContext>(options =>
               options.UseSqlite("Data Source=RateMyClasses.db"));
+            services.AddDbContext<ReviewContext>(options =>
+                   options.UseSqlite("Data Source=RateMyClasses.db"));
         }
 
 

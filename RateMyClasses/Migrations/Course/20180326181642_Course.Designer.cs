@@ -7,35 +7,34 @@ using Microsoft.EntityFrameworkCore.Storage;
 using RateMyClasses.Models;
 using System;
 
-namespace RateMyClasses.Migrations.Student
+namespace RateMyClasses.Migrations.Course
 {
-    [DbContext(typeof(StudentContext))]
-    partial class StudentContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(CourseContext))]
+    [Migration("20180326181642_Course")]
+    partial class Course
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.0.0-rtm-26452");
 
-            modelBuilder.Entity("RateMyClasses.Models.Student", b =>
+            modelBuilder.Entity("RateMyClasses.Models.Course", b =>
                 {
                     b.Property<long>("id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("firstName");
+                    b.Property<string>("courseEvalLink");
 
-                    b.Property<bool>("isModerator");
+                    b.Property<string>("department");
 
-                    b.Property<string>("lastName");
+                    b.Property<string>("description");
 
-                    b.Property<string>("studentStatus");
-
-                    b.Property<string>("userName");
+                    b.Property<string>("name");
 
                     b.HasKey("id");
 
-                    b.ToTable("Student");
+                    b.ToTable("Course");
                 });
 #pragma warning restore 612, 618
         }
