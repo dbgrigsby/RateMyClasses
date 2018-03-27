@@ -1,19 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
-
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" />
   </ItemGroup>
-
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
   </ItemGroup>
-
   <ItemGroup>
     <None Remove="Views\LoginView.cshtml.ascx" />
     <None Remove="Views\Review\Create.cshtml" />
@@ -36,7 +32,7 @@
     <Content Remove="Views\Search\DepartmentSearch.cshtml" />
   </ItemGroup>
   <ItemGroup>
-        <Folder Include="Views\Search\" />
+    <Folder Include="Views\Search\" />
     <Folder Include="Migrations\" />
     <Folder Include="Data\" />
     <Folder Include="Views\Moderator\" />
