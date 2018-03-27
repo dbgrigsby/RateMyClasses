@@ -31,9 +31,9 @@ Add additional notes about how to deploy this on a live system
 
 
 ## Authors
-* **Daniel Grigsby** - *Contributer* - [dbgrigsby](https://github.com/dbgrigsby)
-* **Dominique Owens** - *Contributer* - [ddo3](https://github.com/ddo3)
-* **Adam Beck** - *Contributer* - [AdamKBeck](https://github.com/AdamKBeck)
+* **Daniel Grigsby** - *Contributor* - [dbgrigsby](https://github.com/dbgrigsby)
+* **Dominique Owens** - *Contributor* - [ddo3](https://github.com/ddo3)
+* **Adam Beck** - *Contributor* - [AdamKBeck](https://github.com/AdamKBeck)
 
 
 ## License
