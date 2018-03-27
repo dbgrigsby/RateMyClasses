@@ -27,9 +27,9 @@ namespace RateMyClasses
             services.AddDbContext<StudentContext>(options =>
                 options.UseSqlite("Data Source=RateMyClasses.db"));
             services.AddDbContext<CourseContext>(options =>
-              options.UseSqlite("Data Source=RateMyClasses.db"));
+                options.UseSqlite("Data Source=RateMyClasses.db"));
             services.AddDbContext<ReviewContext>(options =>
-                   options.UseSqlite("Data Source=RateMyClasses.db"));
+                options.UseSqlite("Data Source=RateMyClasses.db"));
             services.AddDbContext<ReportContext>(options =>
                 options.UseSqlite("Data Source=RateMyClasses.db"));
         }

@@ -8,34 +8,34 @@
 <h2>Moderator View</h2>
 
 <div>
-    
-<table>
-    <tr>
-        <th width="100px;" align="left">
-            CourseId
-        </th>
-        <th width="200px" align="left">
-            Description
-        </th>
-        <th width="200px" align="left">
-            StudentId
-        </th>
-        <th width="75px" align="left">
-            Score
-        </th>
-    </tr>
-    @foreach (var item in Model)
-    {
+
+    <table>
         <tr>
-            <td width="75px;" align="left">@item.courseId</td>
-            <td width="75px;" align="left">@item.description</td>
-            <td width="75px;" align="left">@item.studentId</td>
-            <td width="75px;" align="left">@item.score</td>
-            <td width="75px;">
-                <a asp-controller="Review" asp-action="Index" asp-route-id="@item.id">Reviews</a> |
-           </td>
+            <th width="100px;" align="left">
+                CourseId
+            </th>
+            <th width="200px" align="left">
+                Description
+            </th>
+            <th width="200px" align="left">
+                StudentId
+            </th>
+            <th width="75px" align="left">
+                Score
+            </th>
         </tr>
-    }
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td width="75px;" align="left">@item.courseId</td>
+                <td width="75px;" align="left">@item.description</td>
+                <td width="75px;" align="left">@item.studentId</td>
+                <td width="75px;" align="left">@item.score</td>
+                <td width="75px;">
+                    <a asp-controller="Review" asp-action="Index" asp-route-id="@item.id">Reviews</a> |
+                </td>
+            </tr>
+        }
+    </table>
 
 </div>
