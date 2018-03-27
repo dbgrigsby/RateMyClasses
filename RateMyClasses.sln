@@ -1,7 +1,9 @@
-
+﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RateMyClasses", "RateMyClasses\RateMyClasses.csproj", "{88E1350B-1E16-4BB3-B571-197AEFB3CFA6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RateMyClassesTester", "RateMyClassesTester\RateMyClassesTester.csproj", "{B1F29E6D-FF5B-40CC-8168-371460349755}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,5 +15,9 @@ Global
 		{88E1350B-1E16-4BB3-B571-197AEFB3CFA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88E1350B-1E16-4BB3-B571-197AEFB3CFA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88E1350B-1E16-4BB3-B571-197AEFB3CFA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1F29E6D-FF5B-40CC-8168-371460349755}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1F29E6D-FF5B-40CC-8168-371460349755}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1F29E6D-FF5B-40CC-8168-371460349755}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1F29E6D-FF5B-40CC-8168-371460349755}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
