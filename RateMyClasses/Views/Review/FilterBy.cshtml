@@ -1,0 +1,34 @@
+﻿@{
+    ViewBag.Title = "CourseView";
+}
+
+@model IEnumerable<RateMyClasses.Models.Review>
+
+<h2>Reviews</h2>
+
+<div> 
+    <table>
+        <tr>
+            <th width="100px;" align="left">
+                CourseId
+            </th>
+            <th width="200px" align="left">
+                Description
+            </th>
+            <th width="75px" align="left">
+                Score
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td width="75px;" align="left">@item.courseId</td>
+                <td width="75px;" align="left">@item.description</td>
+                <td width="75px;" align="left">@item.score</td>
+                <td width="75px;">
+                </td>
+            </tr>
+        }
+    </table>
+
+</div>

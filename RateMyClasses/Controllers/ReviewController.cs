@@ -25,6 +25,15 @@ namespace RateMyClasses.Controllers
             return View(await _context.Review.ToListAsync());
         }
 
+		public ActionResult FilterBy(long givenCourseID) {
+			var allReviews = from c in _context.Review
+							 select c;
+
+			allReviews = allReviews.Where(r => r.courseId == givenCourseID);
+			Console.WriteLine("*********" + givenCourseID + "***");
+			return View(allReviews);
+		}
+
         // GET: Review/Details/5
         public async Task<IActionResult> Details(long? id)
         {
