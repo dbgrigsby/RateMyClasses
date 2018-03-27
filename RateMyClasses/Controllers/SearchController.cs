@@ -33,30 +33,35 @@ namespace RateMyClasses.Controllers {
 
 			var allCourses = from c in _context.Course
 							 select c;
-
+			var selectedCourses = allCourses;
 			var noCourses = allCourses.Where(i => i.id == 0);
 
 			// search by name
 			if (!String.IsNullOrEmpty(nameString)) {
-				var selectedCourses = allCourses.Where(c => c.name.ToLower().Contains(nameString.ToLower()));
-				return View(selectedCourses);
+				selectedCourses = selectedCourses.Where(c => c.name.ToLower().Contains(nameString.ToLower()));
 			}
 
 			// search by department
-			else if (!String.IsNullOrEmpty(departmentString)) {
-				var selectedCourses = allCourses.Where(c => c.department.ToLower().Contains(departmentString.ToLower()));
-				return View(selectedCourses);
+			if (!String.IsNullOrEmpty(departmentString)) {
+				selectedCourses = selectedCourses.Where(c => c.department.ToLower().Contains(departmentString.ToLower()));
+
 			}
 
 			// search by description
-			else if (!String.IsNullOrEmpty(descriptionString)) {
-				var selectedCourses = allCourses.Where(c => c.description.ToLower().Contains(descriptionString.ToLower()));
-				return View(selectedCourses);
+			if (!String.IsNullOrEmpty(descriptionString)) {
+				selectedCourses = selectedCourses.Where(c => c.description.ToLower().Contains(descriptionString.ToLower()));
 			}
 
-			// default, no table listed
-			else {
+			// if there was no search specified, return no courses
+			if (String.IsNullOrEmpty(nameString) &&
+				String.IsNullOrEmpty(departmentString) &&
+				String.IsNullOrEmpty(descriptionString)) {
+
 				return View(noCourses);
+			}
+
+			else {
+				return View(selectedCourses);
 			}
 		}
 
