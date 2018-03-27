@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Search";
+}
+
+@model IEnumerable<RateMyClasses.Models.Student>
+
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.firstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.lastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.studentStatus)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.userName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.isModerator)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.firstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.lastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.studentStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.userName)
+            </td>
+
+             <td>
+                @Html.DisplayFor(modelItem => item.isModerator)
+            </td>
+            <td>
+                <a asp-controller="Moderator" asp-action="Index" asp-route-id="@item.id">Delete</a> |
+                <a asp-controller="Moderator" asp-action="Index" asp-route-id="@item.id">Approve</a>
+           </td>
+        </tr>
+}
+    </tbody>
+</table>

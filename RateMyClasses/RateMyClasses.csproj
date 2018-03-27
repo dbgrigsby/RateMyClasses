@@ -33,11 +33,13 @@
     <Content Remove="Views\Student\Details.cshtml" />
     <Content Remove="Views\Student\Edit.cshtml" />
     <Content Remove="Views\Student\Index.cshtml" />
+    <Content Remove="Views\Search\DepartmentSearch.cshtml" />
   </ItemGroup>
   <ItemGroup>
         <Folder Include="Views\Search\" />
     <Folder Include="Migrations\" />
     <Folder Include="Data\" />
+    <Folder Include="Views\Moderator\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Migrations\20180324194800_InitialCreate.cs" />
