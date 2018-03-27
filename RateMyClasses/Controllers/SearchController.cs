@@ -27,7 +27,7 @@ namespace RateMyClasses.Controllers {
 
 		public ActionResult Index(string nameString = "",
 								  string departmentString = "",
-								  string descriptionString = "") {
+								  string descriptionString = "") { // now keyword
 			ViewData["Title"] = "Search";
 			ViewData["Message"] = "Enter in a course to search";
 
@@ -47,9 +47,10 @@ namespace RateMyClasses.Controllers {
 
 			}
 
-			// search by description
+			// search by keyword, which is description and name
 			if (!String.IsNullOrEmpty(descriptionString)) {
-				selectedCourses = selectedCourses.Where(c => c.description.ToLower().Contains(descriptionString.ToLower()));
+				selectedCourses = selectedCourses.Where(c => (c.description.ToLower().Contains(descriptionString.ToLower())) ||
+														(c.name.ToLower().Contains(descriptionString.ToLower())));
 			}
 
 			// if there was no search specified, return no courses
