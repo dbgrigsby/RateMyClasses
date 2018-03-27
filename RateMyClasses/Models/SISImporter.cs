@@ -20,17 +20,27 @@ namespace RateMyClasses.Models
                 client.DownloadFile(SIS_URL, newFileName);
             }
             currentXmlOutputFile = newFileName;
+            Console.WriteLine("XML SIS Data Downloaded.");
         }
 
         public void saveXmlToDatabase(string fileName)
         {
+            Console.WriteLine("Loading XML.");
             XElement xelement = XElement.Load(currentXmlOutputFile);
-            IEnumerable<Course> courses = xelement.Descendants("Class").Select(item =>
-                new Course(item.Element("CourseLabel").Value, item.Element("Subject").Value, item.Element("Description")?.Value));
+            IEnumerable<Course> courses = xelement.Descendants("Class")
+                .Where(x => !(x.Element("ComponentCode").Value.Equals("REC")
+                              || x.Element("ComponentCode").Value.Equals("LAB")
+                              || x.Element("ComponentCode").Value.Equals("DIS")))
+                .Select(item =>
+                    new Course(item.Element("CourseLabel").Value, item.Element("Subject").Value, item.Element("Description")?.Value));
+            Console.WriteLine("Saving courses to database.");
+            var coursesImported = 0;
             foreach (var course in courses)
             {
                 course.SaveToDatabase();
+                coursesImported += 1;
             }
+            Console.WriteLine("Database import complete. Imported " + coursesImported + " courses.");
         }
     }
 }

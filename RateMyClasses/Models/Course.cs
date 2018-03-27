@@ -30,7 +30,7 @@ namespace RateMyClasses.Models
             {
                 context.Course.Add(this);
                 context.SaveChanges();
-                Console.WriteLine("Added " + this.name +  " to database!");
+                //Console.WriteLine("Added " + this.name +  " to database!");
             }
         }
     }

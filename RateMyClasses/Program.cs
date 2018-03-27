@@ -15,9 +15,11 @@ namespace RateMyClasses
     {
         public static void Main(string[] args)
         {
-            // ImportAllSISCourses();
-            
+           
             BuildWebHost(args).Run();
+            
+            //ImportAllSISCourses();
+            
         }
         
         /**
