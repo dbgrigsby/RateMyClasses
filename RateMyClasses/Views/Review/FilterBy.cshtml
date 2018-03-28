@@ -4,7 +4,8 @@
 
 @model IEnumerable<RateMyClasses.Models.Review>
 
-<h2>Reviews</h2>
+<h2>@ViewData["Title"]</h2>
+<p>@ViewData["Description"]</p>
 
 <div> 
     <table>
@@ -25,10 +26,8 @@
                 <td width="75px;" align="left">@item.courseId</td>
                 <td width="75px;" align="left">@item.description</td>
                 <td width="75px;" align="left">@item.score</td>
-                <td width="75px;">
-                </td>
+                <td> <a asp-controller="Review" asp-action="Report" asp-route-reviewID="@item.id">Report </a> </td>
             </tr>
         }
     </table>
-
 </div>

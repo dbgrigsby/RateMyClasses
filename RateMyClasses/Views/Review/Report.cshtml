@@ -1,10 +1,35 @@
-﻿using System;
-namespace RateMyClasses.Views.Review
-{
-	public class Report
-	{
-		public Report()
-		{
-		}
-	}
+﻿@{
+    ViewBag.Title = "CourseView";
 }
+
+@model IEnumerable<RateMyClasses.Models.Review>
+
+<h2>@ViewData["Title"]</h2>
+<p>@ViewData["Description"]</p>
+
+<a asp-controller="Search" asp-action="Index" >Go Back To Search </a>
+
+<div> 
+    <table>
+        <tr>
+            <th width="100px;" align="left">
+                CourseId
+            </th>
+            <th width="200px" align="left">
+                Description
+            </th>
+            <th width="75px" align="left">
+                Score
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td width="75px;" align="left">@item.courseId</td>
+                <td width="75px;" align="left">@item.description</td>
+                <td width="75px;" align="left">@item.score</td>
+                <td> <a asp-controller="Review" asp-action="Report" asp-route-reviewID="@item.id">Report </a> </td>
+            </tr>
+        }
+    </table>
+</div>

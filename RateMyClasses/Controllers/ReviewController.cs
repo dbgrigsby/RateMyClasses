@@ -25,13 +25,45 @@ namespace RateMyClasses.Controllers
             return View(await _context.Review.ToListAsync());
         }
 
+		// Shows reviews filtered by their corresponding class
 		public ActionResult FilterBy(long givenCourseID) {
+			ViewData["Title"] = "Reviews";
+			ViewData["Description"] = "The following are reviews for this course";
 			var allReviews = from c in _context.Review
 							 select c;
 
 			allReviews = allReviews.Where(r => r.courseId == givenCourseID);
-			Console.WriteLine("*********" + givenCourseID + "***");
 			return View(allReviews);
+		}
+
+		// Marks a review as reported and shows a confirmation screen
+		public ActionResult Report(long reviewID) {
+			ViewData["Title"] = "Report Confirmation";
+			ViewData["Description"] = "Thank you for making our website a safer place. Our moderators will look over this review";
+
+			// get the reported review
+			Review reportedReview = (from r in _context.Review
+									 where r.id == reviewID
+									 select r).SingleOrDefault();
+
+			// add the reported review to the list of reported reviews
+			// TODO: get it a unique id, the id of the last row + 1?
+			Report r2 = new Report {
+				reviewID = reportedReview.id,
+				reportContent = reportedReview.description,
+				isHandled = false
+			};
+
+			using (var context = new ReportContext(new DbContextOptions<ReportContext>())) {
+				context.Report.Add(r2);
+				context.SaveChanges();
+			}
+
+			var allReviews = from c in _context.Review
+							 select c;
+			allReviews = allReviews.Where(r => r.courseId == reportedReview.courseId);
+			return View(allReviews);
+
 		}
 
         // GET: Review/Details/5
