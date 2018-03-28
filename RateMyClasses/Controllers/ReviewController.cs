@@ -25,7 +25,7 @@ namespace RateMyClasses.Controllers
             return View(await _context.Review.ToListAsync());
         }
 
-		// Shows reviews filtered by their corresponding class
+		// Shows reviews filtered by their corresponding class and aren't hidden
 		public ActionResult FilterBy(long givenCourseID) {
 			ViewData["Title"] = "Reviews";
 			ViewData["Description"] = "The following are reviews for this course";
@@ -33,6 +33,7 @@ namespace RateMyClasses.Controllers
 							 select c;
 
 			allReviews = allReviews.Where(r => r.courseId == givenCourseID);
+			allReviews = allReviews.Where(r => r.isHidden == false); // filter out hidden reviews
 			return View(allReviews);
 		}
 

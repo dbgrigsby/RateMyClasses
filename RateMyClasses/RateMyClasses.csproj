@@ -30,6 +30,7 @@
     <Content Remove="Views\Student\Edit.cshtml" />
     <Content Remove="Views\Student\Index.cshtml" />
     <Content Remove="Views\Search\DepartmentSearch.cshtml" />
+    <Content Remove="Views\Moderator\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Search\" />

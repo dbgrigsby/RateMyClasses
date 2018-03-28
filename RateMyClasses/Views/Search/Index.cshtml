@@ -50,7 +50,8 @@
                 @Html.DisplayFor(modelItem => item.department)
             </td>
             <td>
-                <a asp-controller="Review" asp-action="FilterBy" asp-route-givenCourseID="@item.id">Reviews</a> 
+                <a asp-controller="Review" asp-action="FilterBy" asp-route-givenCourseID="@item.id">Reviews</a> | 
+                <a asp-controller="Review" asp-action="Create" asp-route-id="@item.id"> Write</a> 
            </td>
         </tr>
 }
