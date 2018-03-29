@@ -96,7 +96,7 @@ namespace RateMyClasses.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,courseId,professorName,description,dateCreated,isHidden,score")] Review review)
+        public async Task<IActionResult> Create([Bind("courseId,professorName,description,dateCreated,isHidden,score")] Review review)
         {
             if (ModelState.IsValid)
             {

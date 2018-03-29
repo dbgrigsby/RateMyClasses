@@ -64,6 +64,7 @@ namespace RateMyClasses.Controllers {
 								  select c;
 
 			_context.Report.RemoveRange(reportsToDelete);
+			_context.SaveChanges();
 
 			var allReports = from c2 in _context.Report
 							 select c2;
