@@ -16,18 +16,22 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RateMyClasses.Models;
 
-namespace RateMyClasses.Controllers {
-	public class ModeratorController: Controller {
+namespace RateMyClasses.Controllers
+{
+	public class ModeratorController: Controller
+	{
 
 		private readonly ReportContext _context;
 		private readonly ReviewContext _reviewContext;
 
-		public ModeratorController(ReportContext context, ReviewContext reviewContext) {
+		public ModeratorController(ReportContext context, ReviewContext reviewContext)
+		{
 			_context = context;
 			_reviewContext = reviewContext;
 		}
 
-		public ActionResult Index() {
+		public ActionResult Index()
+		{
 			var allReports = from c in _context.Report
 							 select c;
 
@@ -35,14 +39,15 @@ namespace RateMyClasses.Controllers {
 		}
 
 		// Hides a review from being public
-		public ActionResult Hide(long reviewID) {
+		public ActionResult Hide(long reviewID)
+		{
 			var newAllReports = from c in _context.Report
 								where c.reviewID == reviewID
 								select c;
 
 			var reviewToHide = (from r in _reviewContext.Review
-								 where r.id == reviewID
-								 select r).SingleOrDefault();
+								where r.id == reviewID
+								select r).SingleOrDefault();
 
 			reviewToHide.isHidden = true;
 
@@ -53,12 +58,13 @@ namespace RateMyClasses.Controllers {
 			_context.SaveChanges();
 
 			var allReports = from c2 in _context.Report
-							 select c2;		
+							 select c2;
 			return View(allReports);
 		}
 
 		// Approves a review, nothing happens to the review, but the reports get deleted from the moderation queue
-		public ActionResult Approve(long reviewID) {
+		public ActionResult Approve(long reviewID)
+		{
 			var reportsToDelete = from c in _context.Report
 								  where c.reviewID == reviewID
 								  select c;
