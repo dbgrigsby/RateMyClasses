@@ -53,6 +53,10 @@ namespace RateMyClasses.Controllers {
 														(c.name.ToLower().Contains(descriptionString.ToLower())));
 			}
 
+			// After all the selections are done, we begin to format our data for testing purposes
+
+
+
 			// if there was no search specified, return no courses
 			if (String.IsNullOrEmpty(nameString) &&
 				String.IsNullOrEmpty(departmentString) &&
