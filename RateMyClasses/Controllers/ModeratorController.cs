@@ -35,6 +35,7 @@ namespace RateMyClasses.Controllers
 			var allReports = from c in _context.Report
 							 select c;
 
+			ViewData["Result"] = allReports.ToList().Count().ToString();
 			return View(allReports);
 		}
 

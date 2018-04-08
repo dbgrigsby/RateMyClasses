@@ -30,6 +30,7 @@ namespace RateMyClasses.Controllers
         {
             if (id == null)
             {
+				ViewData["Result"] = "NullID";
                 return NotFound();
             }
 
