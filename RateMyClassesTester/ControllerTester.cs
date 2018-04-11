@@ -1,11 +1,15 @@
-﻿using Xunit;
+﻿using System;
+using Xunit;
 using RateMyClasses.Controllers;
 using RateMyClasses.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Hosting.Internal;
+using Microsoft.Data.Sqlite;
 using Moq;
+
 
 
 namespace RateMyClassesTester
@@ -50,8 +54,17 @@ namespace RateMyClassesTester
         [Fact]
         public void All_Reviews_Listed_Moderator()
         {
-            ReviewContext a = new ReviewContext(new DbContextOptions<ReviewContext>());
-            ReportContext b = new ReportContext(new DbContextOptions<ReportContext>());
+
+            var dbsource = Environment.CurrentDirectory + "/RateMyClasses.db"; 
+            
+            var connectionsReview = new SqliteConnection("Data Source=" + dbsource);
+            var optionsReview = new DbContextOptionsBuilder<ReviewContext>() .UseSqlite(connectionsReview).Options;
+            
+            var connectionReport = new SqliteConnection("Data Source=" + dbsource);
+            var optionsReport = new DbContextOptionsBuilder<ReportContext>() .UseSqlite(connectionReport).Options;
+            
+            ReviewContext a = new ReviewContext(optionsReview);
+            ReportContext b = new ReportContext(optionsReport);
 
             var result = new ModeratorController(b, a).Index() as ViewResult;
             var viewData = result.ViewData;

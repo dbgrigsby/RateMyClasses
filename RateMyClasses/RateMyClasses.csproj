@@ -50,4 +50,9 @@
     <Compile Remove="Migrations\Course\CourseContextModelSnapshot.cs" />
     <Compile Remove="Migrations\Review\20180326174559_Add Review Model.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="RateMyClasses.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>
