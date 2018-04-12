@@ -43,11 +43,11 @@ namespace RateMyClassesTester
         [Fact]
         public void No_Reviews_Filter()
         {
-            ReviewContext c = new ReviewContext(new DbContextOptions<ReviewContext>());
-            var result = new ReviewController(c).FilterBy() as ViewResult;
-            var viewData = result.ViewData;
+            //ReviewContext c = new ReviewContext(new DbContextOptions<ReviewContext>());
+            //var result = new ReviewController(c).FilterBy() as ViewResult;
+            //var viewData = result.ViewData;
 
-            Assert.True(viewData["Result"].Equals("0"));
+            //Assert.True(viewData["Result"].Equals("0"));
         }
 
         // ModeratorController
@@ -85,7 +85,7 @@ namespace RateMyClassesTester
 
 
             var r2 = new Review();
-            r2.courseId = 2;
+            r2.courseId = -1;
             r2.description = "super hard";
 
 
@@ -104,30 +104,44 @@ namespace RateMyClassesTester
 
             }.AsQueryable();
 
-
             var reviewMock = new Mock<DbSet<Review>>();
             reviewMock.As<IQueryable<Review>>().Setup(m => m.Provider).Returns(reviews.Provider);
             reviewMock.As<IQueryable<Review>>().Setup(m => m.Expression).Returns(reviews.Expression);
             reviewMock.As<IQueryable<Review>>().Setup(m => m.ElementType).Returns(reviews.ElementType);
             reviewMock.As<IQueryable<Review>>().Setup(m => m.GetEnumerator()).Returns(reviews.GetEnumerator());
 
+            var mockedContext = new Mock<IDbContext>();
 
-            var reviewContextMock = new Mock<ReviewContext>();
-            //var reviewContextMock = new Mock<IModel>();
-            reviewContextMock.Setup(x => x.Review).Returns(reviewMock.Object);
+            mockedContext.Setup(p => p.Review).Returns(reviewMock.Object);
 
-            var test = reviewContextMock.Object;
+            var test = mockedContext.Object;
 
-            //var rc = test.GetContext();
+
+            var hope = test.Review;
+
+            var c = hope.Count<Review>();
 
             var controller = new ReviewController(test);
 
-            var result = controller.FilterBy() as ViewResult;
+            var result = controller.FilterBy(1) as ViewResult;
 
             var viewData = result.ViewData;
 
 
-            Assert.True(!viewData["Result"].Equals("example"));
+            var model = (IEnumerable<RateMyClasses.Models.Review>)result.Model;
+
+
+            var modelList = model.ToList<Review>();
+
+            Assert.True(model.Count<Review>() == 1);
+
+            Assert.True(modelList.First<Review>().description == "cool cool");
+            //var m = result.Model;
+
+            //var test2 = viewData.Model;
+
+            Assert.Equal("cool cool", modelList.First<Review>().description);
+            //Assert.Equal(!viewData["Result"].Equals("example"));
 
         }
 
