@@ -1,3 +1,12 @@
+# Gitignore for RateMyClasses
+
+# Coverage Reports
+coverage-html
+coverage.json
+coverage-hits.txt
+
+
+
 # Autosave files
 *~
 
