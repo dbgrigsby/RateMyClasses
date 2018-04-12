@@ -12,9 +12,16 @@ namespace RateMyClasses.Controllers
 {
     public class ReviewController : Controller
     {
-        private readonly ReviewContext _context;
+        private readonly IDbContext _context;
 
-        public ReviewController(ReviewContext context)
+
+        //public ReviewController(ReviewContext context)
+        //{
+        // _context = context;
+        //}
+
+
+        public ReviewController(IDbContext context)
         {
             _context = context;
         }
@@ -25,49 +32,53 @@ namespace RateMyClasses.Controllers
             return View(await _context.Review.ToListAsync());
         }
 
-		// Shows reviews filtered by their corresponding class and aren't hidden
-		public ActionResult FilterBy(long givenCourseID = -1) {
-			ViewData["Title"] = "Reviews";
-			ViewData["Description"] = "The following are reviews for this course";
-			var allReviews = from c in _context.Review
-							 select c;
+        // Shows reviews filtered by their corresponding class and aren't hidden
+        public ActionResult FilterBy(long givenCourseID = -1)
+        {
+            ViewData["Title"] = "Reviews";
+            ViewData["Description"] = "The following are reviews for this course";
+            var allReviews = from c in _context.Review
+                             select c;
 
-			allReviews = allReviews.Where(r => r.courseId == givenCourseID);
-			allReviews = allReviews.Where(r => r.isHidden == false); // filter out hidden reviews
+            allReviews = allReviews.Where(r => r.courseId == givenCourseID);
+            allReviews = allReviews.Where(r => r.isHidden == false); // filter out hidden reviews
 
-			ViewData["Result"] = allReviews.ToList().Count().ToString();
-			return View(allReviews);
-		}
+            ViewData["Result"] = allReviews.ToList().Count().ToString();
+            return View(allReviews);
+        }
 
-		// Marks a review as reported and shows a confirmation screen
-		public ActionResult Report(long reviewID) {
-			ViewData["Title"] = "Report Confirmation";
-			ViewData["Description"] = "Thank you for making our website a safer place. Our moderators will look over this review";
+        // Marks a review as reported and shows a confirmation screen
+        public ActionResult Report(long reviewID)
+        {
+            ViewData["Title"] = "Report Confirmation";
+            ViewData["Description"] = "Thank you for making our website a safer place. Our moderators will look over this review";
 
-			// get the reported review
-			Review reportedReview = (from r in _context.Review
-									 where r.id == reviewID
-									 select r).SingleOrDefault();
+            // get the reported review
+            Review reportedReview = (from r in _context.Review
+                                     where r.id == reviewID
+                                     select r).SingleOrDefault();
 
-			// add the reported review to the list of reported reviews
-			// TODO: get it a unique id, the id of the last row + 1?
-			Report r2 = new Report {
-				reviewID = reportedReview.id,
-				reportContent = reportedReview.description,
-				isHandled = false
-			};
+            // add the reported review to the list of reported reviews
+            // TODO: get it a unique id, the id of the last row + 1?
+            Report r2 = new Report
+            {
+                reviewID = reportedReview.id,
+                reportContent = reportedReview.description,
+                isHandled = false
+            };
 
-			using (var context = new ReportContext(new DbContextOptions<ReportContext>())) {
-				context.Report.Add(r2);
-				context.SaveChanges();
-			}
+            using (var context = new ReportContext(new DbContextOptions<ReportContext>()))
+            {
+                context.Report.Add(r2);
+                context.SaveChanges();
+            }
 
-			var allReviews = from c in _context.Review
-							 select c;
-			allReviews = allReviews.Where(r => r.courseId == reportedReview.courseId);
-			return View(allReviews);
+            var allReviews = from c in _context.Review
+                             select c;
+            allReviews = allReviews.Where(r => r.courseId == reportedReview.courseId);
+            return View(allReviews);
 
-		}
+        }
 
         // GET: Review/Details/5
         public async Task<IActionResult> Details(long? id)
@@ -193,5 +204,6 @@ namespace RateMyClasses.Controllers
         {
             return _context.Review.Any(e => e.id == id);
         }
+
     }
 }

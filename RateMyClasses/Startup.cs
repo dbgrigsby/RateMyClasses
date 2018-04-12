@@ -32,6 +32,9 @@ namespace RateMyClasses
                 options.UseSqlite("Data Source=RateMyClasses.db"));
             services.AddDbContext<ReportContext>(options =>
                 options.UseSqlite("Data Source=RateMyClasses.db"));
+
+
+            services.AddScoped<IDbContext, RateMyClasses.Models.ReviewContext>();
         }
 
 
