@@ -58,6 +58,8 @@ namespace RateMyClasses.Controllers
 			_context.Report.RemoveRange(newAllReports);
 			_context.SaveChanges();
 
+			ViewData["Result"] = "Hidden";
+
 			var allReports = from c2 in _context.Report
 							 select c2;
 			return View(allReports);
@@ -72,6 +74,8 @@ namespace RateMyClasses.Controllers
 
 			_context.Report.RemoveRange(reportsToDelete);
 			_context.SaveChanges();
+
+			ViewData["Result"] = "Approved";
 
 			var allReports = from c2 in _context.Report
 							 select c2;

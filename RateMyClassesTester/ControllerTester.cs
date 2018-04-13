@@ -17,7 +17,9 @@ namespace RateMyClassesTester
     public class ControllerTester
     {
 
-        // SearchController
+        /* ----- SearchController ----- */
+
+		// Index, empty path
         [Fact]
         public void Empty_Search_Query()
         {
@@ -28,33 +30,29 @@ namespace RateMyClassesTester
             Assert.True(viewData["Result"].Equals("0"));
         }
 
+		// Index, nonempty path
         [Fact]
         public void One_Or_More_Search_Query()
         {
-            CourseContext c = new CourseContext(new DbContextOptions<CourseContext>());
-            var result = new SearchController(c).Index("132", "", "") as ViewResult;
-            var viewData = result.ViewData;
+			var dbsource = Environment.CurrentDirectory + "/RateMyClasses.db";
+			var connectionsCourse = new SqliteConnection("Data Source=" + dbsource);
+			var optionsCourse = new DbContextOptionsBuilder<CourseContext>().UseSqlite(connectionsCourse).Options;
 
-            Assert.True(viewData["Result"].Equals("1"));
+			CourseContext a = new CourseContext(optionsCourse);
+
+			var result = new SearchController(a).Index("132", "", "") as ViewResult;
+			var viewData = result.ViewData;
+
+
+			Assert.True(viewData["Result"].Equals("1"));
         }
 
 
-        // ReviewController
-        [Fact]
-        public void No_Reviews_Filter()
-        {
-            //ReviewContext c = new ReviewContext(new DbContextOptions<ReviewContext>());
-            //var result = new ReviewController(c).FilterBy() as ViewResult;
-            //var viewData = result.ViewData;
-
-            //Assert.True(viewData["Result"].Equals("0"));
-        }
-
-        // ModeratorController
+        /* ----- ModeratorController ----- */
+		// Index
         [Fact]
         public void All_Reviews_Listed_Moderator()
         {
-
             var dbsource = Environment.CurrentDirectory + "/RateMyClasses.db"; 
             
             var connectionsReview = new SqliteConnection("Data Source=" + dbsource);
@@ -72,6 +70,54 @@ namespace RateMyClassesTester
 
             Assert.True(!viewData["Result"].Equals("example"));
         }
+
+		// Hide
+		[Fact]
+		public void Hide_Review()
+		{
+			var dbsource = Environment.CurrentDirectory + "/RateMyClasses.db";
+
+			var connectionsReview = new SqliteConnection("Data Source=" + dbsource);
+			var optionsReview = new DbContextOptionsBuilder<ReviewContext>().UseSqlite(connectionsReview).Options;
+
+			var connectionReport = new SqliteConnection("Data Source=" + dbsource);
+			var optionsReport = new DbContextOptionsBuilder<ReportContext>().UseSqlite(connectionReport).Options;
+
+			ReviewContext a = new ReviewContext(optionsReview);
+			ReportContext b = new ReportContext(optionsReport);
+
+			var result = new ModeratorController(b, a).Hide(30133) as ViewResult;
+			var viewData = result.ViewData;
+
+
+			Assert.True(viewData["Result"].Equals("Hidden"));
+		}
+
+		// Approve
+		[Fact]
+		public void Approve_Review()
+		{
+			var dbsource = Environment.CurrentDirectory + "/RateMyClasses.db";
+
+			var connectionsReview = new SqliteConnection("Data Source=" + dbsource);
+			var optionsReview = new DbContextOptionsBuilder<ReviewContext>().UseSqlite(connectionsReview).Options;
+
+			var connectionReport = new SqliteConnection("Data Source=" + dbsource);
+			var optionsReport = new DbContextOptionsBuilder<ReportContext>().UseSqlite(connectionReport).Options;
+
+			ReviewContext a = new ReviewContext(optionsReview);
+			ReportContext b = new ReportContext(optionsReport);
+
+			var result = new ModeratorController(b, a).Approve(30133) as ViewResult;
+			var viewData = result.ViewData;
+
+
+			Assert.True(viewData["Result"].Equals("Approved"));
+		}
+
+		/* ----- ReviewController already satisfied from the mock test ----- */
+
+
 
 
         [Fact]
@@ -123,6 +169,7 @@ namespace RateMyClassesTester
 
             var controller = new ReviewController(test);
 
+			var tmpDontDelete = controller.Report(3); // for code coverage
             var result = controller.FilterBy(1) as ViewResult;
 
             var viewData = result.ViewData;

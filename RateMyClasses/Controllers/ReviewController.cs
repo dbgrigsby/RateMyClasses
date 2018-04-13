@@ -43,6 +43,7 @@ namespace RateMyClasses.Controllers
             allReviews = allReviews.Where(r => r.courseId == givenCourseID);
             allReviews = allReviews.Where(r => r.isHidden == false); // filter out hidden reviews
 
+			ViewData["Happened"] = "Filtered";
             ViewData["Result"] = allReviews.ToList().Count().ToString();
             return View(allReviews);
         }
