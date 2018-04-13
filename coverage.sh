@@ -2,15 +2,22 @@ dotnet restore
 dotnet build
 
 cd tools
+dotnet minicover uninstrument --workdir ../ # Reset from failed run
 
 # Instrument assemblies inside 'test' folder to detect hits for source files inside 'src' folder
-dotnet minicover instrument --workdir ../ --assemblies RateMyClassesTester/**/bin/**/*.dll --sources RateMyClasses/Controllers/*.cs --sources RateMyClasses/Models/Course.cs --sources RateMyClasses/Models/Review.cs --sources RateMyClasses/Models/SISImporter.cs --sources RateMyClasses/Models/Student.cs
+dotnet minicover instrument --workdir ../ --assemblies RateMyClassesTester/**/bin/**/*.dll --sources RateMyClasses/Controllers/*.cs --sources RateMyClasses/Models/Course.cs --sources RateMyClasses/Models/Review.cs --sources RateMyClasses/Models/SISImporter.cs --sources RateMyClasses/Models/Student.cs 
+
 # Reset hits count in case minicover was run for this project
 dotnet minicover reset
 
 cd ..
 
 for project in RateMyClassesTester/*.csproj; do dotnet test --no-build $project; done
+
+#       Selenium coverage -- not working
+# add --assemblies RateMyClasses/**/*.dll to the instrument command
+# dotnet run --project RateMyClasses/RateMyClasses.csproj --no-build --no-restore
+# read -p "Please run the selenium tests or manual tests, then hit enter."
 
 cd tools
 
