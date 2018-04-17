@@ -1,0 +1,30 @@
+﻿
+@model IEnumerable<RateMyClasses.Models.Review>
+
+<h2>@ViewData["Title"]</h2>
+<p>@ViewData["Message"]</p>
+
+<div> 
+    <table>
+        <tr>
+            <th width="100px;" align="left">
+                CourseId
+            </th>
+            <th width="200px" align="left">
+                Description
+            </th>
+            <th width="75px" align="left">
+                Score
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td width="75px;" align="left">@item.courseId</td>
+                <td width="75px;" align="left">@item.description</td>
+                <td width="75px;" align="left">@item.score</td>
+                <td> <a asp-controller="Review" asp-action="Report" asp-route-reviewID="@item.id">Report </a> </td>
+            </tr>
+        }
+    </table>
+</div>

@@ -18,6 +18,7 @@
     <None Remove="Views\Review\Edit.cshtml" />
     <None Remove="Views\Review\Details.cshtml" />
     <None Remove="Views\Review\Delete.cshtml" />
+    <None Remove="Views\Popular\index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Views\SearchToolBarView.cshtml" />
@@ -39,6 +40,7 @@
     <Folder Include="Migrations\" />
     <Folder Include="Data\" />
     <Folder Include="Views\Moderator\" />
+    <Folder Include="Views\Popular\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Migrations\20180324194800_InitialCreate.cs" />
