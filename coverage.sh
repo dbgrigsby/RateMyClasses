@@ -5,7 +5,7 @@ cd tools
 dotnet minicover uninstrument --workdir ../ # Reset from failed run
 
 # Instrument assemblies inside 'test' folder to detect hits for source files inside 'src' folder
-dotnet minicover instrument --workdir ../ --assemblies RateMyClassesTester/**/bin/**/*.dll --sources RateMyClasses/Controllers/*.cs --sources RateMyClasses/Models/Course.cs --sources RateMyClasses/Models/Review.cs --sources RateMyClasses/Models/SISImporter.cs --sources RateMyClasses/Models/Student.cs 
+dotnet minicover instrument --workdir ../ --assemblies RateMyClassesTester/**/*.dll --sources RateMyClasses/Controllers/*.cs --sources RateMyClasses/Models/Course.cs --sources RateMyClasses/Models/Review.cs --sources RateMyClasses/Models/SISImporter.cs --sources RateMyClasses/Models/Student.cs 
 
 # Reset hits count in case minicover was run for this project
 dotnet minicover reset
