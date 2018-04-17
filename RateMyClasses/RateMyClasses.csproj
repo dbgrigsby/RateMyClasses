@@ -19,6 +19,7 @@
     <None Remove="Views\Review\Details.cshtml" />
     <None Remove="Views\Review\Delete.cshtml" />
     <None Remove="Views\Popular\index.cshtml" />
+    <None Remove="Views\HasBeenReportedView.html" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Views\SearchToolBarView.cshtml" />
