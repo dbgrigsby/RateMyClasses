@@ -10,23 +10,23 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace RateMyClasses.Controllers
 {
-	public class PopularController: Controller
+	public class ProfessorInfoController: Controller
 	{
 
 		private readonly ReviewContext _context;
 
-		public PopularController(ReviewContext context)
+		public ProfessorInfoController(ReviewContext context)
 		{
 			_context = context;
 		}
 
-		public ActionResult Index()
+		public ActionResult Index(String professorName)
 		{
-			ViewData["Title"] = "Highest Rated Professors";
-			ViewData["Message"] = "Here are some of our trending, most popular reviews.";
+			ViewData["Title"] = "Professor Information";
+			ViewData["Message"] = "Here are all the reviews that exist for professor " + professorName + ".";
 
 			var allReviews = from r in _context.Review
-							 where r.score >= 8
+				             where r.professorName.ToLower().Equals(professorName.ToLower()) && r.isHidden == false
 							 select r;
 
 			return View(allReviews);

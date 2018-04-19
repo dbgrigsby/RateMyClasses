@@ -1,5 +1,4 @@
-﻿
-@model IEnumerable<RateMyClasses.Models.Review>
+﻿@model IEnumerable<RateMyClasses.Models.Review>
 
 <h2>@ViewData["Title"]</h2>
 <p>@ViewData["Message"]</p>
@@ -8,12 +7,8 @@
     <table>
         <tr>
             <th width="100px;" align="left">
-                Course-Id
+                CourseId
             </th>
-            <th width="100px;" align="left">
-                Professor
-            </th>
-      
             <th width="200px" align="left">
                 Description
             </th>
@@ -25,12 +20,14 @@
         {
             <tr>
                 <td width="75px;" align="left">@item.courseId</td>
-                <td width="75px;" align="left">@item.professorName</td>
                 <td width="75px;" align="left">@item.description</td>
                 <td width="75px;" align="left">@item.score</td>
-                <td width="50px"> <a asp-controller="Review" asp-action="Report" asp-route-reviewID="@item.id">Report</a> </td>
-                <td> <a asp-controller="ProfessorInfo" asp-action="INdex" asp-route-professorName="@item.professorName">Visit Professor </a> </td>
             </tr>
         }
     </table>
+
+<div>
+    <a asp-controller="Popular" asp-action="Index"> Back </a> 
+</div>
+    
 </div>
