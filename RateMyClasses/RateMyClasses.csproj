@@ -43,6 +43,7 @@
     <Folder Include="Views\Moderator\" />
     <Folder Include="Views\Popular\" />
     <Folder Include="Views\ProfessorInfo\" />
+    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Migrations\20180324194800_InitialCreate.cs" />

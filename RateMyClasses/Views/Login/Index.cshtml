@@ -1,0 +1,10 @@
+﻿<h1>@ViewData["Title"]</h1>
+<p>@ViewData["Message"]</p>
+
+
+<!-- Search by name -->
+<form asp-controller="Moderator" asp-action="Index" method="get">
+        <p> Username: <input type="text" /> </p>
+        <p> Password: <input type="text" /> </p>
+        <p> <input type="submit" value="Login" /> </p>
+</form>
