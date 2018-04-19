@@ -17,6 +17,9 @@ namespace RateMyClasses.Models
         public string professorName { get; set; }
         
 		[StringLength(500, MinimumLength = 10)]
+		[RegularExpression(@"^(?!.*(www|w w w|gmail|@)).*$", ErrorMessage = "This description contains spam. Please keep our website spam-free.")]
+
+
 		public string description { get; set; }
         
 		[DataType(DataType.Date)]

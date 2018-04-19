@@ -28,6 +28,9 @@
                 <th>
                     @Html.DisplayNameFor(model => model.department)
                 </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.id)
+                </th>
             <th></th>
         </tr>
     </thead>
@@ -42,6 +45,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.department)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
             </td>
             <td>
                 <a asp-controller="Review" asp-action="FilterBy" asp-route-givenCourseID="@item.id">Reviews</a> | 

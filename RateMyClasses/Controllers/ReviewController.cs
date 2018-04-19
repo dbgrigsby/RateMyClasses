@@ -112,6 +112,8 @@ namespace RateMyClasses.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("courseId,professorName,description,dateCreated,isHidden,score")] Review review)
         {
+			
+
             if (ModelState.IsValid)
             {
                 _context.Add(review);
