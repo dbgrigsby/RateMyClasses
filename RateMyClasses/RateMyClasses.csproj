@@ -20,6 +20,7 @@
     <None Remove="Views\Review\Delete.cshtml" />
     <None Remove="Views\Popular\index.cshtml" />
     <None Remove="Views\HasBeenReportedView.html" />
+    <None Remove="wwwroot\lib\datatables.net\.bower.json" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Views\SearchToolBarView.cshtml" />
@@ -35,6 +36,7 @@
     <Content Remove="Views\Student\Index.cshtml" />
     <Content Remove="Views\Search\DepartmentSearch.cshtml" />
     <Content Remove="Views\Moderator\Index.cshtml" />
+    <Content Remove="wwwroot\lib\bootstrap\LICENSE" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Search\" />
