@@ -8,18 +8,20 @@
 <p>@ViewData["Description"]</p>
 
 <div> 
-    <table>
-        <tr>
+    <table class="table" id="reviewList">
+       <thead> <tr>
             <th width="100px;" align="left">
                 CourseId
             </th>
-            <th width="200px" align="left">
+            <th width="550px" align="left">
                 Description
             </th>
-            <th width="75px" align="left">
+            <th width="55px" align="left">
                 Score
-            </th>
+            <th width="50px"</th>
         </tr>
+            </thead>
+        <tbody>
         @foreach (var item in Model)
         {
             <tr>
@@ -29,5 +31,6 @@
                 <td> <a asp-controller="Review" asp-action="Report" asp-route-reviewID="@item.id">Report </a> </td>
             </tr>
         }
+       </tbody>
     </table>
 </div>

@@ -5,7 +5,8 @@
 <p>@ViewData["Message"]</p>
 
 <div> 
-    <table>
+    <table class="table" id="popularProfessors">
+        <thead>
         <tr>
             <th width="100px;" align="left">
                 Course-Id
@@ -14,13 +15,17 @@
                 Professor
             </th>
       
-            <th width="200px" align="left">
+            <th width="500px" align="left">
                 Description
             </th>
             <th width="75px" align="left">
                 Score
             </th>
+                <th/>
+            <th/>
         </tr>
+           </thead>
+        <tbody>
         @foreach (var item in Model)
         {
             <tr>
@@ -32,5 +37,6 @@
                 <td> <a asp-controller="ProfessorInfo" asp-action="INdex" asp-route-professorName="@item.professorName">Visit Professor </a> </td>
             </tr>
         }
+            </tbody>
     </table>
 </div>
