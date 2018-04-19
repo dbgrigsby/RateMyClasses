@@ -4,18 +4,21 @@
 <p>@ViewData["Message"]</p>
 
 <div> 
-    <table>
+    <table class="table"id="professorReviews">
+        <thead>
         <tr>
-            <th width="100px;" align="left">
+            <th width="40px;" align="left">
                 CourseId
             </th>
-            <th width="200px" align="left">
+            <th width="450px" align="left">
                 Description
             </th>
-            <th width="75px" align="left">
+            <th width="40px" align="left">
                 Score
             </th>
         </tr>
+            </thead>
+            <tbody>
         @foreach (var item in Model)
         {
             <tr>
@@ -24,6 +27,7 @@
                 <td width="75px;" align="left">@item.score</td>
             </tr>
         }
+            </tbody>
     </table>
 
 <div>
