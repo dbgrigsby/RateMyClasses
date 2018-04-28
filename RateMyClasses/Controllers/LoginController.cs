@@ -15,6 +15,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RateMyClasses.Models;
+using Microsoft.Extensions.Configuration;
+using System.IO;
+using System.Security.Cryptography;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+
 
 namespace RateMyClasses.Controllers
 {
@@ -22,10 +27,12 @@ namespace RateMyClasses.Controllers
 	{
 
 		private readonly CourseContext _context;
+		public readonly ModeratorsContext _mcontext;
 
-		public LoginController(CourseContext context)
+		public LoginController(CourseContext context, ModeratorsContext mcontext)
 		{
 			_context = context;
+			_mcontext = mcontext;
 		}
 
 		public ActionResult Index(Boolean error = false)
@@ -42,9 +49,34 @@ namespace RateMyClasses.Controllers
 
 		public ActionResult Verification(String username, String password)
 		{
-			if (username.ToLower().Equals("adam") && password.ToLower().Equals("beck")) {
+
+			string pw = password;
+
+			// generate a 128-bit salt using a secure PRNG
+			byte[] salt = new byte[128 / 8];
+			Random r = new Random(pw.GetHashCode());
+			r.NextBytes(salt);
+
+			// Console.WriteLine($"Salt: {Convert.ToBase64String(salt)}");
+
+			// derive a 256-bit subkey (use HMACSHA1 with 10,000 iterations)
+			string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+				password: pw,
+				salt: salt,
+				prf: KeyDerivationPrf.HMACSHA1,
+				iterationCount: 10000,
+				numBytesRequested: 256 / 8));
+
+			var reviewToHide = (from m in _mcontext.Moderators
+								select m);
+
+			var allMods = reviewToHide;
+			var selectedMods = allMods.Where(c => (c.name.ToLower().Equals(username.ToLower())) && (c.hash.Equals(hashed)));
+			    
+			if (selectedMods.ToList().Count() > -1) {
 				return RedirectToAction("Index", "Moderator");	
 			}
+
 			else {
 				return RedirectToAction("Index", new { error = true });
 			}
